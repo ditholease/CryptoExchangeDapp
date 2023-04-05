@@ -7,6 +7,8 @@ contract EthSwap {
 	Token  public token;
 	uint   public rate = 100;
 
+	address payable owner;
+
 	event TokensPurchased(
 		address account,
 		address token,
@@ -23,7 +25,20 @@ contract EthSwap {
 
 	constructor(Token _token) public {
 		token = _token;
+
+
+
 	}
+
+    /* Returns the exchange rate */
+    function getrate() public view returns (uint) {
+      return rate;
+    }
+
+    /* Updates the exchange rate */
+    function changerate(uint _rate) public payable {
+      rate = _rate;
+    }
 
 	function buyTokens() public payable {
 		// Redemption rate: No of tokens recieved for 1 ETH
